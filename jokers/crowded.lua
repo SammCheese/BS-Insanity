@@ -18,7 +18,7 @@ SMODS.Joker {
     loc_txt = {
         name = "Crowded",
         text = {
-            "Creates a Crowd card every hand played.",
+            "Creates a Crowd card every hand played in a Round.",
             "Sell to remove all Crowd cards and draw from deck.",
             "{C:inactive}(Currently {C:mult}+#3#{C:inactive}){}"
         }
@@ -28,6 +28,19 @@ SMODS.Joker {
         return {
             vars = {card.ability.extra.crowd_mult, card.ability.extra.crowd_amount, card.ability.mult}
         }
+    end,
+    remove_from_deck = function(self, card, is_debuffed)
+        -- failsafe for debuff.
+        -- Otherwise cards wouldnt be removed from deck if debuffed
+        for i = 1, #G.playing_cards do
+            if (SMODS.has_enhancement(G.playing_cards[i], "m_bi_crowd")) then
+                G.playing_cards[i]:start_dissolve()
+            end
+        end
+
+        card.ability.extra.crowd_amount = 0
+        card.ability.extra.crowd_mult = 2
+        card.ability.mult = card.ability.extra.crowd_mult * card.ability.extra.crowd_amount
     end,
     calculate = function(self, card, context)
         if context.joker_main == true then
