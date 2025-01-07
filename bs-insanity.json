@@ -1,0 +1,14 @@
+{
+  "id": "bs-insanity",
+  "name": "B's Insanity",
+  "author": ["Samm-Cheese", "B"],
+  "description": "A Bunch of Ideas by from my totally mentally stable friend",
+  "prefix": "bi",
+  "main_file": "insanity.lua",
+  "display_name": "B's Insanity",
+  "version": "1.0.0",
+  "dependencies": [
+    "Lovely (>=0.6)",
+    "Balatro"
+  ]
+}
