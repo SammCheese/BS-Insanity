@@ -1,3 +1,23 @@
+G.bi_crowded_highlighted = 0
+
+local hook = CardArea.add_to_highlighted
+function CardArea:add_to_highlighted(card, silent)
+    if (SMODS.has_enhancement(card, "m_bi_crowd")) then
+        G.bi_crowded_highlighted = (G.bi_crowded_highlighted or 0) + 1
+    end
+    
+    return hook(self, card, silent)
+end
+
+local hook_r = CardArea.remove_from_highlighted
+function CardArea:remove_from_highlighted(card, silent)
+    if (SMODS.has_enhancement(card, "m_bi_crowd")) then
+        G.bi_crowded_highlighted = (G.bi_crowded_highlighted or 1) - 1
+    end
+
+    return hook_r(self, card, silent)
+end
+
 local BASE_MULT = 0
 local BASE_CROWD_MULT = 2
 local BASE_CROWD_AMOUNT = 0
@@ -38,6 +58,7 @@ SMODS.Joker {
             end
         end
 
+        G.bi_crowded_highlighted = 0
         card.ability.extra.crowd_amount = 0
         card.ability.extra.crowd_mult = 2
         card.ability.mult = card.ability.extra.crowd_mult * card.ability.extra.crowd_amount
@@ -64,6 +85,7 @@ SMODS.Joker {
                     }
                 end
             }))
+            G.bi_crowded_highlighted = 0
 
             if card.ability.mult > 0 then
                 return {
@@ -83,6 +105,7 @@ SMODS.Joker {
                     draw_card(G.deck, G.hand, 90, 'up', nil)
                 end
             end
+            G.bi_crowded_highlighted = 0
             return
         end
 
@@ -94,6 +117,7 @@ SMODS.Joker {
                 end
             end
 
+            G.bi_crowded_highlighted = 0
             card.ability.extra.crowd_amount = 0
             card.ability.extra.crowd_mult = 2
             card.ability.mult = card.ability.extra.crowd_mult * card.ability.extra.crowd_amount
