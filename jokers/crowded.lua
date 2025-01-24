@@ -39,6 +39,7 @@ SMODS.Joker {
         name = "Crowded",
         text = {
             "Creates a Crowd card every hand played in a Round.",
+            "Gives {C:mult}+2{} + {C:mult}+1{} Mult per Crowd card.",
             "Sell to remove all Crowd cards and draw from deck.",
             "{C:inactive}(Currently {C:mult}+#3#{C:inactive}){}"
         }

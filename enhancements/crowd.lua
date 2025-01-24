@@ -4,8 +4,6 @@ SMODS.Enhancement {
     loc_txt = {
         name = "Crowd",
         text = {
-            "Gives {C:mult}+2{} Mult",
-            "Gains {C:mult}+1{} Mult per Crowd card",
             "Cannot be Played or Discarded"
         }
     },
