@@ -24,6 +24,11 @@ local BASE_CROWD_AMOUNT = 0
 
 SMODS.Joker {
     key = "crowded",
+    atlas = 'bi_bsa',
+    pos = {
+        x = 0,
+        y = 0,
+    },
     unlocked = true,
     discovered = true,
     config = {
